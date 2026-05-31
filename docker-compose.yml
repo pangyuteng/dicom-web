@@ -1,0 +1,27 @@
+services:
+  dicomweb:
+    build: .
+    ports:
+      - "5985:5985"
+    environment:
+      - DICOM_STORAGE_DIR=/data/dicomstorage
+      - PORT=5985
+      - HOST=0.0.0.0
+      - LOG_LEVEL=INFO
+    volumes:
+      - ./dicomstorage:/data/dicomstorage:rw
+    restart: unless-stopped
+    command: hypercorn server:app --bind 0.0.0.0:5985 --workers 1
+    healthcheck:
+      test: curl -s -o /dev/null http://localhost:8080/health || exit 1
+      interval: 15s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+  ohif:
+    image: ohif/app:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./ohif/app-config.js:/usr/share/nginx/html/app-config.js:ro
+    restart: unless-stopped
