@@ -18,9 +18,9 @@ window.config = {
 
         // These must be reachable from the *browser*, not just inside Docker.
         // Since we expose dicomweb on host port 5985, use localhost from the browser.
-        wadoUriRoot: 'http://192.168.68.143:5985',
-        qidoRoot: 'http://192.168.68.143:5985',
-        wadoRoot: 'http://192.168.68.143:5985',
+        wadoUriRoot: 'http://localhost:5985',
+        qidoRoot: 'http://localhost:5985',
+        wadoRoot: 'http://localhost:5985',
 
         qidoSupportsIncludeField: true,
         supportsReject: false,
