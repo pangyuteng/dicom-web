@@ -9,4 +9,4 @@ dicom files are located in `dicomstorage`, use python lib pathlib to locate all 
 
 setup docker compose file as well
 
-
+also setup ohif in docker compose to connect to dicomweb
